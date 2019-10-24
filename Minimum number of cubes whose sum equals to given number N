@@ -1,0 +1,31 @@
+// C++ implementation of the approach 
+#include <iostream> 
+using namespace std; 
+
+// Function to return the minimum 
+// number of cubes whose sum is k 
+int MinOfCubed(int k) 
+{ 
+	// If k is less than the 2^3 
+	if (k < 8) 
+		return k; 
+
+	// Initialize with the maximum 
+	// number of cubes required 
+	int res = k; 
+	for (int i = 1; i <= k; i++) { 
+		if ((i * i * i) > k) 
+			return res; 
+		res = min(res, MinOfCubed(k - (i * i * i)) + 1); 
+	} 
+	return res; 
+} 
+
+// Driver code 
+int main() 
+{ 
+	int num = 15; 
+	cout << MinOfCubed(num); 
+
+	return 0; 
+} 
